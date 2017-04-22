@@ -95,10 +95,10 @@ class Approvals_Validator:
             def __str__(self):
                 return ("validators to dir map:"+str(self.validators_to_dir_map)+"dir affected:"+str(self.dir_affected))
 
-        def update_result(result, owners, curr_dir):
-            for owner in owners:
-                result.validators_to_dir_map[owner].add(curr_dir)
-            result.dir_affected.add(curr_dir)
+            def update_result(self, owners, curr_dir):
+                for owner in owners:
+                    self.validators_to_dir_map[owner].add(curr_dir)
+                self.dir_affected.add(curr_dir)
 
         stack_files = deque()
         required_approvers = defaultdict(list)
@@ -122,7 +122,7 @@ class Approvals_Validator:
                 # and add to required approvers
                 owners = self.__get_owners__(curr_listing)
                 print("owners:", owners)
-                update_result(result, owners, curr_dir)
+                result.update_result(owners, curr_dir)
 
                 # if there are dependencies, add to stack
                 dependencies_file = '/DEPENDENCIES'
