@@ -1,0 +1,67 @@
+Hi Sharanya,
+Thank you for starting the interview process with Twitter! We ask that you complete the coding challenge below as part of your audition.
+Your solution will be anonymously shared with the team, and their first review will solely be based on the quality of your submission. They won’t know your name or see your resume. Please look at the coding challenge closely and make sure to cover all the requirements before you send it to us.
+Should your solution pass the team’s review, your contact in recruiting will be in touch with you to arrange a follow up call or an interview day at Twitter HQ. When onsite, we’ll review through your solution with members of the team you’re interviewing for, talk through your resume, and complete a general computer science interview.
+The Challenge
+At Twitter, all changes to source code are required to be approved by other engineers responsible for the source files that are affected by the changes. As a simplified model, assume each directory may optionally contain two special files that contain information used to identify who must approve a change:
+DEPENDENCIES files list the paths to other directories that its containing directory depends upon. Paths must be relative to the root directory of the source code repository. A directory is considered to be affected by a change if a file or directory in that directory or in one of its transitive dependencies is modified (including creation and deletion).
+OWNERS files list the login names of all of the engineers who are able to approve changes affecting a directory. If there is no one listed in the OWNERS file or it does not exist then the parent directories OWNERS file should be applied.
+For example, consider the following directory tree:
+ x/
+   DEPENDENCIES = "y\n"
+   OWNERS = "A\nB\n"
+ y/
+   OWNERS = "B\nC\n"
+   file
+If a change modifies y/file, it affects both directories y (contains file) and x (depends on y). This change must at a minimum be approved by either B alone (owner of x and y) or both A (owner of x) and C (owner of y).
+Build a command line tool that validates the correct people have approved the changes made to a set of files.
+As an example, the following is expected to work on the example directory structure we have provided to you.
+
+
+$ validate_approvals --approvers alovelace ghopper --changed-files src/com/twitter/follow/Follow.java src/com/twitter/user/User.java
+Approved
+
+
+$ validate_approvals --approvers alovelace --changed-files src/com/twitter/user/User.java
+Insufficient approvals
+Expectations
+The challenge should take about three hours to complete.
+Choice of programming language is entirely up to you.
+Documentation
+README with instructions on how to build and run your program.
+Code is tested
+
+
+http://stackoverflow.com/questions/17352630/creating-a-terminal-program-with-python
+
+On a *nix system (linux/unix),
+if you:
+
+$ chmod 0744 your_file.py
+
+-rwxr--r--   your_file.py
+and add the path to python as the first line of your_file.py:
+
+#!/usr/bin/python
+or (in my case):
+
+#!/usr/local/bin/python
+Once you do that, instead of running it like this:
+
+$ python your_file.py
+You can run it like this:
+
+$ ./your_file.py
+or even rename it to yourfile and run it like this:
+
+$ ./yourfile
+and if you then copy yourfile to your bin (i.e. #!/usr/bin/, or #!/usr/local/bin/) you can run it like this:
+
+$ yourfile
+Then you can...
+
+Use raw_input() to solicit and get input from you user.
+
+your_file.py:
+
+
