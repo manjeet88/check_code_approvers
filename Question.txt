@@ -31,37 +31,16 @@ Documentation
 README with instructions on how to build and run your program.
 Code is tested
 
+http://stackoverflow.com/questions/1168042/python-scripts-in-usr-bin
 
-http://stackoverflow.com/questions/17352630/creating-a-terminal-program-with-python
+Simply strip off the .py extension by renaming the file. Then, you have to put the following line at the top of your file:
 
-On a *nix system (linux/unix),
-if you:
+#!/usr/bin/env python
+env is a little program that sets up the environment so that the right python interpreter is executed.
 
-$ chmod 0744 your_file.py
+You also have to make your file executable, with the command
 
--rwxr--r--   your_file.py
-and add the path to python as the first line of your_file.py:
-
-#!/usr/bin/python
-or (in my case):
-
-#!/usr/local/bin/python
-Once you do that, instead of running it like this:
-
-$ python your_file.py
-You can run it like this:
-
-$ ./your_file.py
-or even rename it to yourfile and run it like this:
-
-$ ./yourfile
-and if you then copy yourfile to your bin (i.e. #!/usr/bin/, or #!/usr/local/bin/) you can run it like this:
-
-$ yourfile
-Then you can...
-
-Use raw_input() to solicit and get input from you user.
-
-your_file.py:
+chmod a+x htswap
+And dump it into /usr/local/bin. This is cleaner than /usr/bin, because the contents of that directory are usually managed by the operating system.
 
 
