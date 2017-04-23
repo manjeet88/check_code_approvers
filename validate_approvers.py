@@ -17,12 +17,12 @@ class Approvals_Validator:
         '''
         parser = argparse.ArgumentParser(
                     description='Validate approvals')
-        parser.add_argument('-v', '--validators', nargs='+',
-                    help='validators for files', required=True)
+        parser.add_argument('-a', '--approvers', nargs='+',
+                    help='approvers for files', required=True)
         parser.add_argument('-cf', '--changed-files', nargs='+',
                     help='changed files', required=True)
         args = parser.parse_args()
-        self.input_validators = args.validators
+        self.input_validators = args.approvers
         self.changed_files = args.changed_files
 
     def __get_enclosing_directory__(self, path):
@@ -202,4 +202,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
