@@ -23,7 +23,7 @@ To run the tool from the command line as a command:
     - Make the file an executable by adding execute permission
         chmod a+x
 
-    - Strip of the file extension and copy the file to /usr/local/bin
+    - Strip off the file extension and copy the file to /usr/local/bin/
 
     - A distributable binary can be created using a tool
-        such as pyinstaller and distributing the whole dir 'dist'
+        such as pyinstaller and distribute the whole dir 'dist'
