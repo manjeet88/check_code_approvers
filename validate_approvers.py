@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-How do i know what is the root directory? is the cmd line tool run from inside the dir?
-'''
 
-import sys
 import argparse
 from pathlib import Path
 from collections import deque, defaultdict
@@ -31,14 +27,16 @@ class Approvals_Validator:
 
     def __read_file_contents__(self, file_path):
         contents = []
-        with open(file_path, 'r') as ip_file:
-            for line in ip_file:
-                contents.append(line.strip())
+        if self.__file_exists__(file_path):
+            with open(file_path, 'r') as ip_file:
+                for line in ip_file:
+                    contents.append(line.strip())
         return contents
 
     def __get_owners__(self, curr_listing):
         owners = []
         curr_dir = self.__get_current_dir__(curr_listing)
+        # print("38", curr_listing, curr_dir)
         owners_file = '/OWNERS'
 
         # for a file, start looking for owners
@@ -46,6 +44,7 @@ class Approvals_Validator:
         # for a dir, start looking in itself
         while(not self.__file_exists__(str(curr_dir)+str(owners_file))):
             curr_dir = self.__get_enclosing_directory__(curr_dir)
+            # print("46", curr_dir)
         owners = self.__read_file_contents__(str(curr_dir)+owners_file)
         return owners
 
@@ -74,6 +73,7 @@ class Approvals_Validator:
         for a dir, return itself
         '''
         curr_dir = ''
+        # print("76", listing, Path(listing).is_dir())
         if self.__file_exists__(listing):
             curr_dir = self.__get_enclosing_directory__(listing)
         elif self.__dir_exists__(listing):
@@ -137,7 +137,7 @@ class Approvals_Validator:
     def __has_sufficient_approvers__(self, required_approvers, dir_to_notify):
         print("\n")
         for validator in self.input_validators:
-            dir_to_notify = set(dir_to_notify) - set(required_approvers[validator])
+            dir_to_notify = dir_to_notify - required_approvers[validator]
             print("131", dir_to_notify)
         return False if dir_to_notify else True
 
